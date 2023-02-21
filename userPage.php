@@ -9,12 +9,12 @@
 </head>
 <body class="bg-dark text-white">
     <?php 
-        include __DIR__ . '/functions.php';
+        include __DIR__ . './functions.php';
         session_start();
         
         if(!empty($_SESSION['user'])) {
-            $passwordLength = $_SESSION['user']['passwordLength'];
-            $password = generateRandomPassword($passwordLength);
+            $password = $_SESSION['user']['password'];
+            
             echo '<h2 class="my-4 text-center">Your password is' .'<br>'. $password . '</h2>';
         }
 

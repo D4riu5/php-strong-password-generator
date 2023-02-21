@@ -11,20 +11,46 @@
     <div class="container">
         <h1 class="text-center my-4">Password generator</h1>
 
-        <div class="d-flex align-items-center justify-content-center my-5">
-            <h4 class="mx-4">Insert password length:</h4>
+        <div class="my-5">
+
             <form>
-                <input type="text" name="length">
+                <div class="d-flex align-items-center justify-content-center ">
+                    <h4 class="mx-4">Insert password length:</h4>
+                    <input type="number" name="length" min="6" max="25" required>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <div class="mx-2">
+                        <input  type="checkbox" name="include_letters" id="include_letters" checked>
+                        <label for="include_letters">Include letters</label>
+                    </div>
+                    <div class="mx-2">
+                        <input type="checkbox" name="include_numbers" id="include_numbers" checked>
+                        <label for="include_numbers">Include numbers</label>
+                    </div>
+                    <div class="mx-2">
+                        <input type="checkbox" name="include_symbols" id="include_symbols" checked>
+                        <label for="include_symbols">Include symbols</label>
+                    </div>
+                    <div class="mx-2">
+                        <input type="checkbox" name="repeat_characters" id="repeat_characters" checked>
+                        <label for="repeat_characters">Repeat characters</label>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center my-4">
+                    <button type="submit" class="btn btn-primary"> Generate password</button>
+                </div>
             </form>
+            <h5 class="text-center my-4"> Select at least 1 of the checkboxes (letters, numbers, symbols) </h5>
         </div>
 
         <?php 
             include __DIR__ . '/functions.php';
             session_start();
 
-            if (isset($passwordLength)) {
+            if (isset($passwordLength) && $passwordLength != '') {
+                $password = generateRandomPassword($passwordLength, isset($_GET['include_letters']), isset($_GET['include_numbers']), isset($_GET['include_symbols']), isset($_GET['repeat_characters']));
                 $_SESSION['user'] = [
-                    'passwordLength' => $passwordLength,
+                    'password' => $password,
                 ];
     
                 header('Location: ./userPage.php');
