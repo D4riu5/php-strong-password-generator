@@ -11,32 +11,15 @@
     <div class="container">
         <h1 class="text-center my-4">Password generator</h1>
 
-        <div class="d-flex align-items-center">
-            <h4 class="mx-4">insert password length</h4>
+        <div class="d-flex align-items-center justify-content-center my-5">
+            <h4 class="mx-4">Insert password length:</h4>
             <form>
                 <input type="text" name="length">
             </form>
         </div>
 
         <?php 
-        $passwordLength = $_GET['length'];
-
-        function generateRandomPassword($input_length) {
-            $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!?@#$%^&*_:;,.';
-            $password = '';
-            for ($i = 0; $i < $input_length; $i++) {
-                $password .= $chars[rand(0, strlen($chars) - 1)];
-            }
-            return $password;
-        }
-
-        if (isset($passwordLength)) {
-            $password = generateRandomPassword($passwordLength);
-            echo '<h2 class="my-4">Your password is: ' . $password . '</h2>';
-        }
-
-
-
+            include __DIR__ . '/functions.php';
         ?>
 
     </div>
