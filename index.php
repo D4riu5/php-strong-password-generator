@@ -20,6 +20,17 @@
 
         <?php 
             include __DIR__ . '/functions.php';
+            session_start();
+
+            if (isset($passwordLength)) {
+                $_SESSION['user'] = [
+                    'passwordLength' => $passwordLength,
+                ];
+    
+                header('Location: ./userPage.php');
+                
+            }
+
         ?>
 
     </div>

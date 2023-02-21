@@ -10,8 +10,4 @@
         return $password;
     }
 
-    if (isset($passwordLength)) {
-        $password = generateRandomPassword($passwordLength);
-        echo '<h2 class="my-4 text-center">Your password is: ' . $password . '</h2>';
-    }
 ?>
