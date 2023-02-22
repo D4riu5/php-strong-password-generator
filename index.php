@@ -47,7 +47,7 @@
             include __DIR__ . '/functions.php';
             session_start();
 
-            if (isset($passwordLength) && $passwordLength != '') {
+            if (isset($passwordLength) && $passwordLength != '' && is_numeric($passwordLength)) {
                 if (!isset($_GET['include_letters']) && !isset($_GET['include_numbers']) && !isset($_GET['include_symbols'])) {
                     echo "<h5 class='text-center my-4'>Select at least 1 of the checkboxes (letters, numbers, symbols)</h5>";
                     exit();
@@ -59,6 +59,8 @@
     
                 header('Location: ./userPage.php');
                 
+            } else {
+                echo "<h5 class='text-center my-4'>Only numbers allowed in the input!</h5>";
             }
 
         ?>
