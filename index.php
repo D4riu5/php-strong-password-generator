@@ -51,7 +51,16 @@
                 if (!isset($_GET['include_letters']) && !isset($_GET['include_numbers']) && !isset($_GET['include_symbols'])) {
                     echo "<h5 class='text-center my-4'>Select at least 1 of the checkboxes (letters, numbers, symbols)</h5>";
                     exit();
-                }
+                };
+                
+                if($passwordLength < 6) {
+                    echo "<h5 class='text-center my-4'>Password length cannot be lower than 6!</h5>";
+                    exit();
+                };
+                if($passwordLength > 25) {
+                    echo "<h5 class='text-center my-4'>Password length cannot be higher than 25!</h5>";
+                    exit();
+                };
                 $password = generateRandomPassword($passwordLength, isset($_GET['include_letters']), isset($_GET['include_numbers']), isset($_GET['include_symbols']), isset($_GET['repeat_characters']));
                 $_SESSION['user'] = [
                     'password' => $password,
@@ -59,9 +68,9 @@
     
                 header('Location: ./userPage.php');
                 
-            } else {
+            } elseif (!is_numeric($passwordLength) && $passwordLength != ''){
                 echo "<h5 class='text-center my-4'>Only numbers allowed in the input!</h5>";
-            }
+            };
 
         ?>
 
