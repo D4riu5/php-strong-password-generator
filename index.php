@@ -40,7 +40,7 @@
                     <button type="submit" class="btn btn-primary"> Generate password</button>
                 </div>
             </form>
-            <h5 class="text-center my-4"> Select at least 1 of the checkboxes (letters, numbers, symbols) </h5>
+            <!-- <h5 class="text-center my-4"> Select at least 1 of the checkboxes (letters, numbers, symbols) </h5> -->
         </div>
 
         <?php 
@@ -48,6 +48,10 @@
             session_start();
 
             if (isset($passwordLength) && $passwordLength != '') {
+                if (!isset($_GET['include_letters']) && !isset($_GET['include_numbers']) && !isset($_GET['include_symbols'])) {
+                    echo "<h5 class='text-center my-4'>Select at least 1 of the checkboxes (letters, numbers, symbols)</h5>";
+                    exit();
+                }
                 $password = generateRandomPassword($passwordLength, isset($_GET['include_letters']), isset($_GET['include_numbers']), isset($_GET['include_symbols']), isset($_GET['repeat_characters']));
                 $_SESSION['user'] = [
                     'password' => $password,
