@@ -1,5 +1,8 @@
 <?php 
-    $passwordLength = $_GET['length'];
+    if ($_GET) {
+        $passwordLength = $_GET['length'];
+    };
+
 
     function generateRandomPassword($input_length, $include_letters, $include_numbers, $include_symbols, $repeat_characters) {
         $chars = '';
